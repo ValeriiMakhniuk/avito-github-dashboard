@@ -1,7 +1,7 @@
 import axios from 'axios';
 import parseLink from 'parse-link-header';
 
-import { REPOS_PER_PAGE } from '../constants';
+import { REPOS_PER_PAGE, CONTRIBUTORS_PER_PAGE } from '../constants';
 
 export async function getTopRatedRepos() {
   const url = `https://api.github.com/search/repositories?q=stars:>115000+&sort=stars&order=desc`;
@@ -57,7 +57,7 @@ export async function getRepoList(repo, page = 1) {
 export async function getRepoDetails(repoId) {
   const repoUrl = `https://api.github.com/repositories/${repoId}`;
   const languagesUrl = `https://api.github.com/repositories/${repoId}/languages`;
-  const contributorsUrl = `https://api.github.com/repositories/${repoId}/contributors?anon=true&per_page=10`;
+  const contributorsUrl = `https://api.github.com/repositories/${repoId}/contributors?anon=true&per_page=${CONTRIBUTORS_PER_PAGE}`;
 
   const repoDetailsRequest = axios.get(repoUrl);
   const languagesRequest = axios.get(languagesUrl);
