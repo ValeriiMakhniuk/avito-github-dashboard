@@ -1,0 +1,38 @@
+.searchForm {
+  margin-left: 20px;
+}
+
+.label {
+  font-size: 0;
+}
+
+.input {
+  width: 200px;
+  padding: 8px 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 3px;
+  transition: width 0.3s ease-out;
+  background-color: #404448;
+  color: #8d8f92;
+  outline: none;
+}
+
+.input:focus {
+  width: 300px;
+  background-color: #fff;
+  color: #000;
+}
+
+@media only screen and (max-width: 550px) {
+  .searchForm {
+    margin-top: 20px;
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .input:focus {
+    width: 250px;
+  }
+}

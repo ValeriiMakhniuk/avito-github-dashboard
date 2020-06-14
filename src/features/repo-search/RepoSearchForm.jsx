@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
 
-import styles from './repo-search-form.module.css';
+import styles from './RepoSearchForm.module.css';
 
-export default function RepoSearhForm({
+export function RepoSearchForm({
   value,
   setSearchedRepo,
   saveRepoToLocalStorage,
 }) {
   const [searchTerm, setSearchTerm] = useState(value);
   const debounced = useDebounce(searchTerm, 1000);
+
+  const searchInput = useRef(null);
 
   const handleSearch = ({ target: { value } }) => {
     setSearchTerm(value);
@@ -22,6 +24,12 @@ export default function RepoSearhForm({
     saveRepoToLocalStorage(debounced);
   }, [debounced, setSearchedRepo, saveRepoToLocalStorage, value]);
 
+  useEffect(() => {
+    if (searchInput) {
+      searchInput.current.focus();
+    }
+  }, []);
+
   return (
     <form action='/' className={styles.searchForm}>
       <label htmlFor='search' className={styles.label}>
@@ -33,7 +41,8 @@ export default function RepoSearhForm({
         onChange={handleSearch}
         id='search'
         className={styles.input}
-        placeholder='Search'
+        placeholder='Search repository'
+        ref={searchInput}
       />
     </form>
   );
