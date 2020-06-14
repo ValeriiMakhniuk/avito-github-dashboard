@@ -24,7 +24,7 @@
   color: #000;
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 650px) {
   .searchForm {
     margin-top: 20px;
     margin-left: 0;
