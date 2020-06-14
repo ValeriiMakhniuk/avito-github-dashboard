@@ -10,7 +10,11 @@ import {
 
 import { displayTypes } from '../constants';
 
-import RepoSearchForm from '../features/repo-search/repo-search-form';
+import { Logo } from '../components/logo/Logo';
+import { RepoSearchForm } from '../features/repo-search/RepoSearchForm';
+import RepoListPage from '../features/repo-list/repo-list-page';
+
+import styles from './App.module.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -68,16 +72,16 @@ function App() {
 
   let content;
 
-  // if (displayType === displayTypes.REPO_LIST) {
-  //   content = (
-  //     <RepoListPage
-  //       jumpToPage={jumpToPage}
-  //       showRepoDetails={showRepoDetails}
-  //       repo={storedRepo}
-  //       page={storedPage}
-  //     />
-  //   );
-  // }
+  if (displayType === displayTypes.REPO_LIST) {
+    content = (
+      <RepoListPage
+        jumpToPage={jumpToPage}
+        showRepoDetails={showRepoDetails}
+        repo={repo}
+        page={page}
+      />
+    );
+  }
 
   // if (displayType === displayTypes.REPO_DETAILS) {
   //   content = (
@@ -90,7 +94,8 @@ function App() {
 
   return (
     <div className='App'>
-      <header>
+      <header className={styles.header}>
+        <Logo />
         <RepoSearchForm
           value={repo}
           setSearchedRepo={setSearchedRepo}
