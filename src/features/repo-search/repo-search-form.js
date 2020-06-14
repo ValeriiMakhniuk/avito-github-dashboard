@@ -16,11 +16,11 @@ export default function RepoSearhForm({
   };
 
   useEffect(() => {
-    if (debounced) {
+    if (debounced !== value) {
       setSearchedRepo(debounced);
     }
     saveRepoToLocalStorage(debounced);
-  }, [debounced, setSearchedRepo, saveRepoToLocalStorage]);
+  }, [debounced, setSearchedRepo, saveRepoToLocalStorage, value]);
 
   return (
     <form action='/' className={styles.searchForm}>
