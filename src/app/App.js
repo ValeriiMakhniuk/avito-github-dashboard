@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocalStorage } from '../hooks/useLocalStorage';
 import { saveState } from '../utils/localStorage';
 
 import {
@@ -12,7 +11,6 @@ import {
 import { displayTypes } from '../constants';
 
 import RepoSearchForm from '../features/repo-search/repo-search-form';
-import { useEffect } from 'react';
 
 function App() {
   const dispatch = useDispatch();
