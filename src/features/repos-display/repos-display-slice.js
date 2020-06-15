@@ -14,9 +14,9 @@ const reposDisplaySlice = createSlice({
   initialState,
   reducers: {
     setCurrentDisplayType(state, { payload }) {
-      const { displayType, repoId = null } = payload;
+      const { displayType, activeRepoId } = payload;
       state.displayType = displayType;
-      state.activeRepoId = repoId;
+      state.activeRepoId = activeRepoId;
     },
     setCurrentPage(state, { payload }) {
       state.page = payload;
