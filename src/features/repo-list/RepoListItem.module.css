@@ -1,0 +1,73 @@
+.repoItem {
+  width: 100%;
+  padding: 15px;
+  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  border-bottom: solid gray 1px;
+}
+
+.repoItem:last-child {
+  border-bottom: none;
+}
+
+.repoHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.repoTitle {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 18px;
+  color: #0366d6;
+  font-weight: 400;
+}
+
+@media only screen and (max-width: 650px) {
+  .repoTitle {
+    font-size: inherit;
+  }
+}
+
+.repoTitle:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.repoName {
+  font-weight: 700;
+}
+
+.repoStars {
+  display: flex;
+  align-items: center;
+}
+
+.repoCommit {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.btn {
+  display: flex;
+  align-self: flex-start;
+  padding: 5px;
+  color: #fff;
+  background-color: #0366d6;
+  border: none;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: transform 0.1s ease-in-out;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.btn:focus {
+  transform: scale(1.1);
+}
