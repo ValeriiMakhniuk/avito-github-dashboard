@@ -12,7 +12,7 @@ import { displayTypes } from '../constants';
 
 import { Logo } from '../components/logo/Logo';
 import { RepoSearchForm } from '../features/repo-search/RepoSearchForm';
-import RepoListPage from '../features/repo-list/repo-list-page';
+import { RepoListPage } from '../features/repo-list/RepoListPage';
 
 import styles from './App.module.css';
 
