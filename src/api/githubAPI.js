@@ -7,7 +7,7 @@ export async function getTopRatedRepos() {
   const url = `https://api.github.com/search/repositories?q=stars:>115000+&sort=stars&order=desc`;
   const { data } = await axios.get(url);
 
-  return data;
+  return data.items;
 }
 
 function isLastPage(pageLinks) {
@@ -42,18 +42,10 @@ export async function getRepoList(repo, page = 1) {
   }
 
   return {
-    pageLinks,
     pageCount,
-    repos: reposResponse.data,
+    repos: reposResponse.data.items,
   };
 }
-
-// async function getRepoLanguages(repoId) {
-//   const url = `https://api.github.com/repositories/${repoId}/languages`;
-//   const { data } = await axios.get(url);
-
-//   return data;
-// }
 
 export async function getRepoDetails(repoId) {
   const repoUrl = `https://api.github.com/repositories/${repoId}`;
@@ -73,35 +65,4 @@ export async function getRepoDetails(repoId) {
         contributors: responses[2].data,
       }))
     );
-  // const { data } = await axios.get(url);
-  // const repoLanguages = await getRepoLanguages(repoId);
-  // const {
-  //   name: repoName,
-  //   stargazers_count: starsCount,
-  //   pushed_at: lastCommitDate,
-  //   owner: {
-  //     login: repoOwnerName,
-  //     avatar_url: repoOwnerAvatarUrl,
-  //     html_url: repoOwnerUrl,
-  //   },
-  //   description,
-  // } = data;
-
-  // return {
-  //   repoName,
-  //   starsCount,
-  //   lastCommitDate,
-  //   repoOwnerName,
-  //   repoOwnerAvatarUrl,
-  //   repoLanguages,
-  //   repoOwnerUrl,
-  //   description,
-  // };
 }
-
-// export async function getRepoContributors(repoId) {
-//   const url = `https://api.github.com/repositories/${repoId}/contributors?anon=true`;
-//   const { data } = await axios.get(url);
-
-//   return data;
-// }
