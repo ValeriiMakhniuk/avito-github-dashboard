@@ -31,7 +31,7 @@ export function RepoSearchForm({
   }, []);
 
   return (
-    <form action='/' className={styles.searchForm}>
+    <form className={styles.searchForm} onSubmit={(e) => e.preventDefault()}>
       <label htmlFor='search' className={styles.label}>
         Search repositories
       </label>
