@@ -1,0 +1,11 @@
+.tooltip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  background-color: #404448;
+  color: #ffffff;
+}
