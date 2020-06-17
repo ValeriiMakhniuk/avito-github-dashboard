@@ -47,22 +47,18 @@ export async function getRepoList(repo, page = 1) {
   };
 }
 
-export async function getRepoDetails(repoId) {
-  const repoUrl = `https://api.github.com/repositories/${repoId}`;
-  const languagesUrl = `https://api.github.com/repositories/${repoId}/languages`;
-  const contributorsUrl = `https://api.github.com/repositories/${repoId}/contributors?anon=true&per_page=${CONTRIBUTORS_PER_PAGE}`;
+export async function getRepoContributors(repoId) {
+  const url = `https://api.github.com/repositories/${repoId}/contributors?anon=true&per_page=${CONTRIBUTORS_PER_PAGE}`;
 
-  const repoDetailsRequest = axios.get(repoUrl);
-  const languagesRequest = axios.get(languagesUrl);
-  const contributorsRequest = axios.get(contributorsUrl);
+  const { data } = await axios.get(url);
 
-  return await axios
-    .all([repoDetailsRequest, languagesRequest, contributorsRequest])
-    .then(
-      axios.spread((...responses) => ({
-        repoDetails: responses[0].data,
-        languages: responses[1].data,
-        contributors: responses[2].data,
-      }))
-    );
+  return data;
+}
+
+export async function getRepoLanguages(repoId) {
+  const url = `https://api.github.com/repositories/${repoId}/languages`;
+
+  const { data } = await axios.get(url);
+
+  return data;
 }
