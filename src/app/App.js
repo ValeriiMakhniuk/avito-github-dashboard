@@ -102,7 +102,9 @@ function App() {
           saveRepoToLocalStorage={saveRepoToLocalStorage}
         />
       </header>
-      {content}
+      <main>
+        <div className={styles.wrapper}>{content}</div>
+      </main>
     </div>
   );
 }

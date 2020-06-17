@@ -5,8 +5,6 @@ import { fetchRepos, fetchTopRepos } from './repo-list-slice';
 
 import { RepoList } from './RepoList';
 
-import styles from './RepoListPage.module.css';
-
 export function RepoListPage({ jumpToPage, showRepoDetails, repo, page }) {
   const dispatch = useDispatch();
   const {
@@ -49,14 +47,5 @@ export function RepoListPage({ jumpToPage, showRepoDetails, repo, page }) {
     jumpToPage(newPage);
   };
 
-  return (
-    <main>
-      <div className={styles.pageInner}>{renderedList}</div>
-      {/* <RepoPagination
-        currentPage={currentPage}
-        pageCount={pageCount}
-        onPageChange={onPageChanged}
-      /> */}
-    </main>
-  );
+  return renderedList;
 }
