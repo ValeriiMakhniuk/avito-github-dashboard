@@ -1,0 +1,17 @@
+.main {
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #24292e;
+  color: #fff;
+}
+
+@media only screen and (max-width: 650px) {
+  .header {
+    flex-direction: column;
+  }
+}

@@ -3,9 +3,37 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchRepos, fetchTopRepos } from './repo-list-slice';
 
-import { RepoList } from './RepoList';
+import { REPOS_PER_PAGE } from '../../constants';
 
-export function RepoListPage({ jumpToPage, showRepoDetails, repo, page }) {
+import { Logo } from '../../components/logo/Logo';
+import { RepoSearchForm } from '../repo-search/RepoSearchForm';
+import { RepoList } from './RepoList';
+import { Paginator } from '../../components/paginator/Paginator';
+import { Spinner } from '../../components/shared/Spinner';
+
+import styles from './RepoListPage.module.css';
+
+function RepoListHeader({ repo, setSearchedRepo, saveRepoToLocalStorage }) {
+  return (
+    <header className={styles.header}>
+      <Logo />
+      <RepoSearchForm
+        value={repo}
+        setSearchedRepo={setSearchedRepo}
+        saveRepoToLocalStorage={saveRepoToLocalStorage}
+      />
+    </header>
+  );
+}
+
+export function RepoListPage({
+  jumpToPage,
+  showRepoDetails,
+  repo,
+  page,
+  setSearchedRepo,
+  saveRepoToLocalStorage,
+}) {
   const dispatch = useDispatch();
   const {
     currentPageRepos,
@@ -37,7 +65,7 @@ export function RepoListPage({ jumpToPage, showRepoDetails, repo, page }) {
   const currentPage = Math.min(pageCount, Math.max(page, 1)) - 1;
 
   let renderedList = isLoading ? (
-    <h3>Loading...</h3>
+    <Spinner />
   ) : (
     <RepoList repos={repos} showRepoDetails={showRepoDetails} />
   );
@@ -47,5 +75,21 @@ export function RepoListPage({ jumpToPage, showRepoDetails, repo, page }) {
     jumpToPage(newPage);
   };
 
-  return renderedList;
+  return (
+    <>
+      <RepoListHeader
+        setSearchedRepo={setSearchedRepo}
+        saveRepoToLocalStorage={saveRepoToLocalStorage}
+        repo={repo}
+      />
+      <main className={styles.main}>
+        <div className='wrapper'>{renderedList}</div>
+      </main>
+      <Paginator
+        totalPages={pageCount}
+        itemsPerPage={REPOS_PER_PAGE}
+        jumToPage={jumpToPage}
+      />
+    </>
+  );
 }
