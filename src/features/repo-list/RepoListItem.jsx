@@ -9,7 +9,7 @@ import Repo from '../../components/shared/repo';
 import styles from './RepoListItem.module.css';
 
 export const RepoListItem = ({ repo, showRepoDetails }) => {
-  const { id, name, full_name, stargazers_count, pushed_at, html_url } = repo;
+  const { id, full_name, stargazers_count, pushed_at, html_url } = repo;
   const [isMouseEnter, setMouseEnter] = useState(false);
   const [cursorPosition, setCursorPosition] = useState(null);
 
@@ -52,9 +52,12 @@ export const RepoListItem = ({ repo, showRepoDetails }) => {
       <p className={styles.repoCommit}>
         Last commit: {formatToNow(lastCommitDate)}
       </p>
-      <a href={html_url} className={styles.btn}>
-        Go to repo page
-      </a>
+      <p>
+        Repo Link:
+        <a href={html_url} target='_blank' rel='noopener noreferrer'>
+          {html_url}
+        </a>
+      </p>
     </li>
   );
 };
