@@ -13,7 +13,7 @@ export function RepoTooltip({ x, y, show }) {
         }}
         className={styles.tooltip}
       >
-        <span>Watch repo details</span>
+        <span>View repository's details</span>
       </div>
     );
   }

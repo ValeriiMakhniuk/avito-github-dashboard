@@ -2,10 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
+  width: 200px;
   height: 30px;
   border-radius: 5px;
   border-top-left-radius: 0px;
   background-color: #404448;
+  font-size: inherit;
   color: #ffffff;
 }
