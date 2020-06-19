@@ -1,0 +1,87 @@
+.wrapper {
+  composes: wrapper from '../repo-list/RepoListPage.module.css';
+}
+
+.header {
+  composes: header from '../repo-list/RepoListPage.module.css';
+}
+
+.repoSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.repoHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ownerAvatar {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.commit {
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.ownerLink {
+  font-size: 18px;
+  color: #0366d6;
+}
+
+.description {
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.subtitle {
+  margin-top: 20px;
+}
+
+.backButton {
+  position: relative;
+  margin-left: 10px;
+  padding: 5px 10px 5px 2px;
+  background-color: #404448;
+  border: none;
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.backButton::before {
+  content: '';
+  position: absolute;
+  left: -19px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 19px solid transparent;
+  border-bottom: 20px solid transparent;
+
+  border-right: 19px solid #404448;
+}
