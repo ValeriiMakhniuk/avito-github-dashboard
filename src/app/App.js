@@ -10,9 +10,8 @@ import {
 
 import { displayTypes } from '../constants';
 
-import { Logo } from '../components/logo/Logo';
-import { RepoSearchForm } from '../features/repo-search/RepoSearchForm';
 import { RepoListPage } from '../features/repo-list/RepoListPage';
+import { RepoDetailsPage } from '../features/repo-details/RepoDetailsPage';
 
 import styles from './App.module.css';
 
@@ -79,34 +78,22 @@ function App() {
         showRepoDetails={showRepoDetails}
         repo={repo}
         page={page}
+        setSearchedRepo={setSearchedRepo}
+        saveRepoToLocalStorage={saveRepoToLocalStorage}
       />
     );
   }
 
-  // if (displayType === displayTypes.REPO_DETAILS) {
-  //   content = (
-  //     <RepoDetailsPage
-  //       showRepoList={showRepoList}
-  //       activeRepoId={activeRepoId}
-  //     />
-  //   );
-  // }
+  if (displayType === displayTypes.REPO_DETAILS) {
+    content = (
+      <RepoDetailsPage
+        showRepoList={showRepoList}
+        activeRepoId={activeRepoId}
+      />
+    );
+  }
 
-  return (
-    <div className='App'>
-      <header className={styles.header}>
-        <Logo />
-        <RepoSearchForm
-          value={repo}
-          setSearchedRepo={setSearchedRepo}
-          saveRepoToLocalStorage={saveRepoToLocalStorage}
-        />
-      </header>
-      <main>
-        <div className={styles.wrapper}>{content}</div>
-      </main>
-    </div>
-  );
+  return <div className={styles.app}>{content}</div>;
 }
 
 export default App;
