@@ -1,10 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import {
-  getRepoList,
-  getRepoDetails,
-  getTopRatedRepos,
-} from '../../api/githubAPI';
+import { getRepoList, getRepo, getTopRatedRepos } from '../../api/githubAPI';
 
 const reposInitialState = {
   byId: {},
@@ -37,7 +33,6 @@ const repos = createSlice({
       state.error = null;
     },
     getTopReposSucess(state, { payload }) {
-      console.log('Payload:', payload);
       const repos = payload;
       state.isLoading = false;
       state.error = null;
@@ -93,7 +88,7 @@ export const fetchRepos = (repo, page) => async (dispatch) => {
 export const fetchRepo = (id) => async (dispatch) => {
   try {
     dispatch(getRepoStart());
-    const repo = await getRepoDetails(id);
+    const repo = await getRepo(id);
     dispatch(getRepoSuccess(repo));
   } catch (err) {
     dispatch(getRepoFailure(err.toString()));

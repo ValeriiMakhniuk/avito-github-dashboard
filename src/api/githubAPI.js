@@ -36,6 +36,7 @@ export async function getRepoList(repo, page = 1) {
 
   let pageCount = 0;
   const pageLinks = parseLink(reposResponse.headers.link);
+  console.log(pageLinks);
 
   if (pageLinks !== null) {
     pageCount = getPageCount(pageLinks);
@@ -47,8 +48,16 @@ export async function getRepoList(repo, page = 1) {
   };
 }
 
+export async function getRepo(repoId) {
+  const url = `https://api.github.com/repositories/${repoId}`;
+
+  const { data } = await axios.get(url);
+
+  return data;
+}
+
 export async function getRepoContributors(repoId) {
-  const url = `https://api.github.com/repositories/${repoId}/contributors?anon=true&per_page=${CONTRIBUTORS_PER_PAGE}`;
+  const url = `https://api.github.com/repositories/${repoId}/contributors?per_page=${CONTRIBUTORS_PER_PAGE}`;
 
   const { data } = await axios.get(url);
 
