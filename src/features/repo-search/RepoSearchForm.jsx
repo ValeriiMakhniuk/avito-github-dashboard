@@ -17,6 +17,10 @@ export function RepoSearchForm({
     setSearchTerm(value);
   };
 
+  const handleFocus = ({ target }) => {
+    target.select();
+  };
+
   useEffect(() => {
     if (debounced !== value) {
       setSearchedRepo(debounced);
@@ -43,6 +47,7 @@ export function RepoSearchForm({
         className={styles.input}
         placeholder='Search repository'
         ref={searchInput}
+        onFocus={handleFocus}
       />
     </form>
   );
