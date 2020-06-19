@@ -9,7 +9,7 @@ import { fetchRepoLanguages } from './languages-slice';
 
 import { LanguageList } from './LanguageList';
 import { ContributorList } from './ContributorList';
-import Star from '../../components/shared/star';
+import { Star } from '../../components/shared/Star';
 
 import styles from './RepoDetailsPage.module.css';
 

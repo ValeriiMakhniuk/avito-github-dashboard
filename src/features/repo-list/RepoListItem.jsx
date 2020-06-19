@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { formatToNow } from '../../utils/dates.js';
 
 import { RepoTooltip } from '../../components/repo-tooltip/RepoTooltip';
-import Star from '../../components/shared/star';
-import Repo from '../../components/shared/repo';
+import { Star } from '../../components/shared/Star';
+import { Repo } from '../../components/shared/Repo';
 
 import styles from './RepoListItem.module.css';
 
