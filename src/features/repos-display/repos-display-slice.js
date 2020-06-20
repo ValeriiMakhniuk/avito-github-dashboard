@@ -23,6 +23,7 @@ const reposDisplaySlice = createSlice({
     },
     setRepo(state, { payload }) {
       state.repo = payload;
+      state.page = 1;
     },
   },
 });
