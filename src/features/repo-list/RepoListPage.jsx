@@ -8,7 +8,7 @@ import { REPOS_PER_PAGE } from '../../constants';
 import { Logo } from '../../components/logo/Logo';
 import { RepoSearchForm } from '../repo-search/RepoSearchForm';
 import { RepoList } from './RepoList';
-// import { Paginator } from '../../components/paginator/Paginator';
+import { Paginator } from '../../components/paginator/Paginator';
 import { Spinner } from '../../components/shared/Spinner';
 
 import styles from './RepoListPage.module.css';
@@ -85,11 +85,11 @@ export function RepoListPage({
       <main className={styles.main}>
         <div className='wrapper'>{renderedList}</div>
       </main>
-      {/* <Paginator
+      <Paginator
         totalPages={pageCount}
         itemsPerPage={REPOS_PER_PAGE}
         jumToPage={jumpToPage}
-      /> */}
+      />
     </>
   );
 }
