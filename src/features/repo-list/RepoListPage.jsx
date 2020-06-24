@@ -62,18 +62,11 @@ export function RepoListPage({
     );
   }
 
-  const currentPage = Math.min(pageCount, Math.max(page, 1)) - 1;
-
   let renderedList = isLoading ? (
     <Spinner />
   ) : (
     <RepoList repos={repos} showRepoDetails={showRepoDetails} />
   );
-
-  const onPageChanged = (selectedItem) => {
-    const newPage = selectedItem.selected + 1;
-    jumpToPage(newPage);
-  };
 
   return (
     <>
@@ -85,11 +78,14 @@ export function RepoListPage({
       <main className={styles.main}>
         <div className='wrapper'>{renderedList}</div>
       </main>
-      <Paginator
-        totalPages={pageCount}
-        itemsPerPage={REPOS_PER_PAGE}
-        jumToPage={jumpToPage}
-      />
+      {!isLoading && (
+        <Paginator
+          totalPages={pageCount}
+          itemsPerPage={REPOS_PER_PAGE}
+          jumToPage={jumpToPage}
+          activePage={page}
+        />
+      )}
     </>
   );
 }
