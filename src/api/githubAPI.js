@@ -36,7 +36,6 @@ export async function getRepoList(repo, page = 1) {
 
   let pageCount = 0;
   const pageLinks = parseLink(reposResponse.headers.link);
-  console.log(pageLinks);
 
   if (pageLinks !== null) {
     pageCount = getPageCount(pageLinks);
