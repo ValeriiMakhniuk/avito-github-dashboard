@@ -77,15 +77,15 @@ export function RepoListPage({
       />
       <main className={styles.main}>
         <div className='wrapper'>{renderedList}</div>
+        {!isLoading && (
+          <Paginator
+            totalPages={pageCount}
+            itemsPerPage={REPOS_PER_PAGE}
+            jumToPage={jumpToPage}
+            activePage={page}
+          />
+        )}
       </main>
-      {!isLoading && (
-        <Paginator
-          totalPages={pageCount}
-          itemsPerPage={REPOS_PER_PAGE}
-          jumToPage={jumpToPage}
-          activePage={page}
-        />
-      )}
     </>
   );
 }
