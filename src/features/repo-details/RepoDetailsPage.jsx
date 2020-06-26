@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 
 import { formatToNow } from '../../utils/dates.js';
@@ -10,63 +11,56 @@ import { fetchRepoLanguages } from './languages-slice';
 import { LanguageList } from './LanguageList';
 import { ContributorList } from './ContributorList';
 import { Star } from '../../components/shared/Star';
+import { Spinner } from '../../components/shared/Spinner';
 
 import styles from './RepoDetailsPage.module.css';
 
-function BackToListButton({ showRepoList }) {
-  const handleClick = (e) => {
-    e.preventDefault();
-    showRepoList();
-  };
-
+function BackToListButton() {
   return (
-    <button onClick={handleClick} className={styles.backButton}>
+    <Link to='/' className={styles.backButton}>
       Back to list
-    </button>
+    </Link>
   );
 }
 
-function RepoDetailsHeader({ showRepoList }) {
+function RepoDetailsHeader() {
   return (
     <header className={styles.header}>
-      <BackToListButton showRepoList={showRepoList} />
+      <BackToListButton />
     </header>
   );
 }
 
-export function RepoDetailsPage({ showRepoList, activeRepoId }) {
+export function RepoDetailsPage({ showRepoList, match }) {
+  const { repoId } = match.params;
   const dispatch = useDispatch();
 
-  const repo = useSelector((state) => state.repos.byId[activeRepoId]);
+  const repo = useSelector((state) => state.repos.byId[repoId]);
 
   useEffect(() => {
     if (!repo) {
-      dispatch(fetchRepo(activeRepoId));
+      dispatch(fetchRepo(repoId));
     }
-    dispatch(fetchRepoContributors(activeRepoId));
-    dispatch(fetchRepoLanguages(activeRepoId));
-  }, [repo, dispatch, activeRepoId]);
+    dispatch(fetchRepoContributors(repoId));
+    dispatch(fetchRepoLanguages(repoId));
+  }, [repo, dispatch, repoId]);
 
   const { contributors, contributorsError } = useSelector((state) => {
     return {
-      contributors: state.contributors.byRepoId[activeRepoId],
+      contributors: state.contributors.byRepoId[repoId],
       contributorsError: state.contributors.error,
     };
   }, shallowEqual);
 
   const { languages, languagesError } = useSelector((state) => {
     return {
-      languages: state.languages.byRepoId[activeRepoId],
+      languages: state.languages.byRepoId[repoId],
       languagesError: state.languages.error,
     };
   });
 
   if (!repo) {
-    return (
-      <div>
-        <p>Loading repo #{activeRepoId}...</p>
-      </div>
-    );
+    return <Spinner />;
   }
 
   const lastCommitDate = new Date(repo.pushed_at);
