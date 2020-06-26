@@ -1,0 +1,35 @@
+.paginator {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+}
+.list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  max-width: 30px;
+  align-items: center;
+  margin-right: 5px;
+  border: solid #24292e 2px;
+  border-radius: 3px;
+  font-size: inherit;
+}
+
+.pageBtn {
+  display: flex;
+  margin: 0;
+  padding: 5px 10px;
+  border: none;
+  background-color: transparent;
+  color: #000000;
+}
+
+.active {
+  composes: pageBtn;
+  background-color: lightgreen;
+}
