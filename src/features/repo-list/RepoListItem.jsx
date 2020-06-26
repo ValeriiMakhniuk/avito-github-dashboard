@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { formatToNow } from '../../utils/dates.js';
 
@@ -8,15 +9,10 @@ import { Repo } from '../../components/shared/Repo';
 
 import styles from './RepoListItem.module.css';
 
-export const RepoListItem = ({ repo, showRepoDetails }) => {
+export const RepoListItem = ({ repo }) => {
   const { id, full_name, stargazers_count, pushed_at, html_url } = repo;
   const [isMouseEnter, setMouseEnter] = useState(false);
   const [cursorPosition, setCursorPosition] = useState(null);
-
-  const onRepoClicked = (e) => {
-    e.preventDefault();
-    showRepoDetails(id);
-  };
 
   const handleMouseMove = (e) => {
     setMouseEnter(true);
@@ -35,15 +31,15 @@ export const RepoListItem = ({ repo, showRepoDetails }) => {
     <li className={styles.repoItem}>
       <div className={styles.repoHeader}>
         <RepoTooltip {...cursorPosition} show={isMouseEnter} />
-        <h3
+        <Link
+          to={`/repo/${id}`}
           className={styles.repoTitle}
-          onClick={onRepoClicked}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >
           <Repo width={16} height={16} />
           {owner}/<span className={styles.repoName}>{repoName}</span>
-        </h3>
+        </Link>
         <p className={styles.repoStars}>
           <Star width={16} height={16} />
           {stargazers_count}
