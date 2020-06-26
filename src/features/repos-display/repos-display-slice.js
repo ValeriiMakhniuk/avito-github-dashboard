@@ -1,23 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { displayTypes } from '../../constants';
-
 const initialState = {
   repo: '',
   page: 1,
-  displayType: displayTypes.REPO_LIST,
-  activeRepoId: null,
 };
 
 const reposDisplaySlice = createSlice({
   name: 'reposDisplay',
   initialState,
   reducers: {
-    setCurrentDisplayType(state, { payload }) {
-      const { displayType, activeRepoId = null } = payload;
-      state.displayType = displayType;
-      state.activeRepoId = activeRepoId;
-    },
     setCurrentPage(state, { payload }) {
       state.page = payload;
     },
