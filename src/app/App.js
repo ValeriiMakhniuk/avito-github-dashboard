@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveState } from '../utils/localStorage';
 
@@ -7,8 +8,6 @@ import {
   setCurrentPage,
   setRepo,
 } from '../features/repos-display/repos-display-slice';
-
-import { displayTypes } from '../constants';
 
 import { RepoListPage } from '../features/repo-list/RepoListPage';
 import { RepoDetailsPage } from '../features/repo-details/RepoDetailsPage';
@@ -25,16 +24,7 @@ function App() {
   const showRepoDetails = (repoId) => {
     dispatch(
       setCurrentDisplayType({
-        displayType: displayTypes.REPO_DETAILS,
         activeRepoId: repoId,
-      })
-    );
-  };
-
-  const showRepoList = () => {
-    dispatch(
-      setCurrentDisplayType({
-        displayType: displayTypes.REPO_LIST,
       })
     );
   };
@@ -69,31 +59,23 @@ function App() {
     });
   };
 
-  let content;
-
-  if (displayType === displayTypes.REPO_LIST) {
-    content = (
-      <RepoListPage
-        jumpToPage={jumpToPage}
-        showRepoDetails={showRepoDetails}
-        repo={repo}
-        page={page}
-        setSearchedRepo={setSearchedRepo}
-        saveRepoToLocalStorage={saveRepoToLocalStorage}
-      />
-    );
-  }
-
-  if (displayType === displayTypes.REPO_DETAILS) {
-    content = (
-      <RepoDetailsPage
-        showRepoList={showRepoList}
-        activeRepoId={activeRepoId}
-      />
-    );
-  }
-
-  return <div className={styles.app}>{content}</div>;
+  return (
+    <div className={styles.app}>
+      <Router>
+        <Route exact path='/'>
+          <RepoListPage
+            jumpToPage={jumpToPage}
+            showRepoDetails={showRepoDetails}
+            repo={repo}
+            page={page}
+            setSearchedRepo={setSearchedRepo}
+            saveRepoToLocalStorage={saveRepoToLocalStorage}
+          />
+        </Route>
+        <Route exact path='/repo/:repoId' component={RepoDetailsPage}></Route>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
